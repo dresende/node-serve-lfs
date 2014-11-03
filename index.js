@@ -45,8 +45,7 @@ exports = module.exports = function (paths, options) {
 
 		lfs.get(path, function (root) {
 			if (root === null) {
-				res.writeHead(404, "Not Found");
-				return res.end();
+				res.status(404).end();
 			}
 
 			send(req, path, {
