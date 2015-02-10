@@ -48,13 +48,18 @@ exports = module.exports = function (paths, options) {
 				res.status(404).end();
 			}
 
-			send(req, path, {
+			var el = send(req, path, {
 				maxage : options.maxage,
 				root   : root
 			})
 			.on("error", error)
-			.on("directory", directory)
-			.pipe(res);
+			.on("directory", directory);
+
+			if (typeof options.pipe == "function") {
+				options.pipe(el, res);
+			} else {
+				el.pipe(res);
+			}
 		});
 	};
 };
