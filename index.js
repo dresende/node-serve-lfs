@@ -56,7 +56,7 @@ exports = module.exports = function (paths, options) {
 			.on("directory", directory);
 
 			if (typeof options.pipe == "function") {
-				options.pipe(el, res);
+				options.pipe(req, res, el, next);
 			} else {
 				el.pipe(res);
 			}
