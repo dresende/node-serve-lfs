@@ -1,4 +1,5 @@
 var parseurl = require("parseurl");
+var join     = require("path").join;
 var resolve  = require("path").resolve;
 var send     = require("send");
 var url      = require("url");
@@ -48,17 +49,21 @@ exports = module.exports = function (paths, options) {
 				res.status(404).end();
 			}
 
-			var el = send(req, path, {
-				maxage : options.maxage,
-				root   : root
-			})
-			.on("error", error)
-			.on("directory", directory);
+			var pkg = function () {
+				return send(req, path, {
+					maxage : options.maxage,
+					root   : root
+				})
+				.on("error", error)
+				.on("directory", directory);
+			};
 
 			if (typeof options.pipe == "function") {
-				options.pipe(req, res, el, next);
+				options.pipe(req, res, join(root, path), function () {
+					pkg().pipe(res);
+				});
 			} else {
-				el.pipe(res);
+				pkg().pipe(res);
 			}
 		});
 	};
