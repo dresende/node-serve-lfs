@@ -46,7 +46,7 @@ exports = module.exports = function (paths, options) {
 
 		lfs.get(path, function (root) {
 			if (root === null) {
-				res.status(404).end();
+				return res.status(404).end();
 			}
 
 			var pkg = function () {

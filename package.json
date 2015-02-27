@@ -1,6 +1,6 @@
 {
 	"name"         : "serve-lfs",
-	"version"      : "0.0.6",
+	"version"      : "0.0.7",
 	"description"  : "Serve static files using layered file system",
 	"main"         : "index.js",
 	"author"       : "Diogo Resende <dresende@thinkdigital.pt>",
