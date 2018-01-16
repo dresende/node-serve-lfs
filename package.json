@@ -8,7 +8,7 @@
 	"license"      : "MIT",
 	"dependencies" : {
 		"parseurl" : "1.3.0",
-		"send"     : "0.13.0",
+		"send"     : "0.16.1",
 		"lfs"      : "0.0.4"
 	}
 }
